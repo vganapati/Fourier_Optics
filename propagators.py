@@ -75,8 +75,8 @@ if __name__ == "__main__":
     Lx_max = 1000
     Ly_max = 1000
     wavelength = .6
-    alpha =  1.2
-    beta = 1.2
+    alpha =  .1
+    beta = .1
     z = 1000
     
     plane_wave = create_plane_wave(dx, dy,

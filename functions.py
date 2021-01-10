@@ -9,11 +9,12 @@ Created on Wed Jan  6 10:12:44 2021
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def F(mat2D): # Fourier transform assuming center pixel as center
-    return np.fft.fftshift(np.fft.fft2(mat2D))
+    return np.fft.fftshift(np.fft.fft2(np.fft.fftshift(mat2D)))
 
 def Ft(mat2D): # Inverse Fourier transform assuming center pixel as center
-    return np.fft.ifft2(np.fft.ifftshift(mat2D))
+    return np.fft.ifftshift(np.fft.ifft2(np.fft.ifftshift(mat2D)))
 
 def make_meshgrid(dx = 0.01,
                   dy = 0.01,
@@ -54,11 +55,16 @@ def make_circle(dx = 0.01,
     
     return(circle, extent, F_circle, F_extent)
 
-def plot(img, extent):
+def plot(img, extent, log=False):
 
+    if log:
+        img_abs = np.log(np.abs(img))
+    else:
+        img_abs = np.abs(img)
+        
     plt.figure()
     plt.title('Magnitude')
-    plt.imshow(np.abs(img), interpolation='none', extent = extent, cmap='gray')
+    plt.imshow(img_abs, interpolation='none', extent = extent, cmap='gray')
     plt.colorbar()
 
     plt.figure()
@@ -135,9 +141,11 @@ def make_2D_delta(dx = 0.01,
     return(mat2D, extent, F(mat2D), F_extent)
 
 if __name__ == "__main__":
-    func = exp_func_0
+    func = rect
     mat2D, extent, F_mat2D, F_extent = make_2D(func=func)
     plot(mat2D, extent)
+    plot(F_mat2D, F_extent)
+
 
     mat2D, extent, F_mat2D, F_extent = make_2D_delta()
     plot(mat2D, extent)
