@@ -3,7 +3,7 @@
 """
 Created on Wed Jan  6 10:39:10 2021
 
-@author: vganapa1
+@author: vganapati
 """
 
 from functions import F, Ft, make_meshgrid, plot

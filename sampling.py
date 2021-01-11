@@ -3,7 +3,7 @@
 """
 Created on Sun Jan 10 15:27:46 2021
 
-@author: vganapa1
+@author: vganapati
 """
 
 from propagators import create_plane_wave

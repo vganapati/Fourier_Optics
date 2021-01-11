@@ -55,19 +55,19 @@ def make_circle(dx = 0.01,
     
     return(circle, extent, F_circle, F_extent)
 
-def plot(img, extent, log=False):
+def plot(img, extent, log=False, figsize_x = 10, figsize_y = 10):
 
     if log:
         img_abs = np.log(np.abs(img))
     else:
         img_abs = np.abs(img)
         
-    plt.figure()
+    plt.figure(figsize = [figsize_x,figsize_y])
     plt.title('Magnitude')
     plt.imshow(img_abs, interpolation='none', extent = extent, cmap='gray')
     plt.colorbar()
 
-    plt.figure()
+    plt.figure(figsize = [figsize_x,figsize_y])
     plt.title('Phase')
     plt.imshow(np.angle(img), interpolation='none', extent = extent, cmap='hsv',
                vmin = -np.pi, vmax = np.pi)
