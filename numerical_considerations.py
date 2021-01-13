@@ -17,8 +17,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # units are microns
-dx = 0.6 # Decrease to increase sampling
-dy = 0.6 # Decrease to increase sampling
+dx = 0.3 # Decrease to increase sampling
+dy = 0.3 # Decrease to increase sampling
 Lx_max = 100 # Increase to increase zero padding
 Ly_max = 100 # Increase to increase zero padding
 wavelength = .6

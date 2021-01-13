@@ -22,7 +22,11 @@ def scalar_prop(u0,dx,dy,z,wavelength): # x is the row coordinate, y is the colu
     
     FX,FY=np.meshgrid(fx,fy, indexing = 'ij')
 
+    FX[np.nonzero( np.sqrt(FX**2+FY**2) > (1./wavelength) )] = 0
+    FY[np.nonzero( np.sqrt(FX**2+FY**2) > (1./wavelength) )] = 0
     H = np.exp(1j*2*np.pi*(1./wavelength)*z*np.sqrt(1-(wavelength*FX)**2-(wavelength*FY)**2))
+    
+    FX,FY=np.meshgrid(fx,fy, indexing = 'ij')
     H[np.nonzero( np.sqrt(FX**2+FY**2) > (1./wavelength) )] = 0
     
     U1 = U0*H
