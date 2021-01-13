@@ -70,6 +70,31 @@ def create_plane_wave(dx, dy,
     plane_wave = np.exp(1j*2*np.pi*(fx*xm + fy*ym))
     return(plane_wave)
 
+
+def NAfilter(m, n, Lx, Ly, wavelength, NA):
+    
+    '''
+    m is the number of points in the source plane field in the x (row) direction
+    n is the number of points in the source plane field in the y (column) direction
+    Lx and Ly are the side lengths of the observation and source fields
+    wavelength is the free space wavelength
+    NA is the numerical aperture
+    '''
+
+    dx = Lx/m
+    dy = Ly/n
+    
+    k = 1./wavelength # wavenumber
+    fx=np.linspace(-1/(2*dx),1/(2*dx)-1/Lx,m) #freq coords in x
+    fy=np.linspace(-1/(2*dy),1/(2*dy)-1/Ly,n) #freq coords in y
+    
+    FX,FY=np.meshgrid(fx, fy, indexing='ij')
+    
+    H=np.zeros([m,n])
+    H[np.nonzero(np.sqrt(FX**2+FY**2)<=NA*k)]=1.
+
+    return H  
+
 if __name__ == "__main__":
     from functions import make_circle
     
